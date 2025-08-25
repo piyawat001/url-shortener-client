@@ -1,0 +1,39 @@
+/* Register.css */
+
+.register-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.register-container button {
+  width: 100%;
+  padding: 0.6rem;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #764ba2; /* สีเหมือน Shorten URL */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+
+.register-container h2 {
+  margin-bottom: 1rem;
+}
+
+.register-container input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.register-container button:hover {
+  background-color: #5e3692; /* สีเข้มขึ้นเวลาชี้เมาส์ */
+}
