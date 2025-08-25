@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import QRCode from "react-qr-code";
 import axios from "axios";
 import './LinkForm.css';  // import CSS
+const Domain = import.meta.env.VITE_API_BASE_URL;
 
 export default function Links() {
   const [url, setUrl] = useState('');
@@ -16,7 +17,7 @@ export default function Links() {
     if (!url) return;
     setLoading(true);
     try {
-      const response = await axios.post('http://localhost:5001/api/shorten', { longUrl: url });
+      const response = await axios.post(`${Domain}/api/shorten`, { longUrl: url });
       setShortUrl(response.data.shortUrl);
       setLongUrl(url);
       setUrl('');
@@ -31,7 +32,7 @@ export default function Links() {
   const handleShortClick = () => {
     try {
       const slug = shortUrl.split("/").pop();
-      window.open(`http://localhost:5001/RT/${slug}`, "_blank");
+      window.open(`${Domain}/RT/${slug}`, "_blank");
     } catch (error) {
       console.error('Error calling redirect API:', error);
     }
