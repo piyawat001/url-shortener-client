@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import QRCode from "react-qr-code";
 import axios from "axios";
 import './LinkForm.css';  // import CSS
-const Domain = import.meta.env.VITE_API_BASE_URL;
+const Domain = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5001';
 
 export default function Links() {
   const [url, setUrl] = useState('');
