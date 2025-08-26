@@ -1,29 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import QRCode from "react-qr-code";
 import axios from "axios";
-import "./LinkForm.css";
-
-const Domain = import.meta.env.VITE_API_BASE_URL || "http://localhost:5001";
+import './LinkForm.css';  // import CSS
+const Domain = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5001';
 
 export default function Links() {
-  const [url, setUrl] = useState("");
-  const [shortUrl, setShortUrl] = useState("");
-  const [LongUrl, setLongUrl] = useState("");
+  const [url, setUrl] = useState('');
+  const [shortUrl, setShortUrl] = useState('');
+  const [LongUrl, setLongUrl] = useState('');
   const [loading, setLoading] = useState(false);
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!url) return;
     setLoading(true);
     try {
-      // Domain = "/api" ในโปรดักชัน => อย่าใส่ /api ซ้ำ
       const response = await axios.post(`${Domain}/shorten`, { longUrl: url });
       setShortUrl(response.data.shortUrl);
       setLongUrl(url);
-      setUrl("");
+      setUrl('');
     } catch (error) {
-      console.error("Error shortening URL:", error);
-      alert("Error shortening URL. Please try again.");
+      console.error('Error shortening URL:', error);
+      alert('Error shortening URL. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -32,10 +32,9 @@ export default function Links() {
   const handleShortClick = () => {
     try {
       const slug = shortUrl.split("/").pop();
-      // เปิดที่รากโดเมน ไม่ใช่ภายใต้ /api
-      window.open(`/RT/${slug}`, "_blank");
+      window.open(`${Domain}/${slug}`, "_blank");
     } catch (error) {
-      console.error("Error calling redirect API:", error);
+      console.error('Error calling redirect API:', error);
     }
   };
 
@@ -43,6 +42,7 @@ export default function Links() {
     <div className="LinkForm">
       <div className="LinkForm-header">
         <h2>🔗 URL Shortener</h2>
+
         <form onSubmit={handleSubmit} className="url-form">
           <input
             type="url"
@@ -52,7 +52,7 @@ export default function Links() {
             required
           />
           <button type="submit" className="submit-btn" disabled={loading}>
-            {loading ? "Shortening..." : "Shorten URL"}
+            {loading ? 'Shortening...' : 'Shorten URL'}
           </button>
         </form>
 
@@ -77,7 +77,9 @@ export default function Links() {
             </div>
           </div>
         )}
+
       </div>
     </div>
+
   );
 }
