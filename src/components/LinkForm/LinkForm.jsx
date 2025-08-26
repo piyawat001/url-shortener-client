@@ -16,8 +16,9 @@ export default function Links() {
     if (!url) return;
     setLoading(true);
     try {
-      // Domain = "/api" ในโปรดักชัน => อย่าใส่ /api ซ้ำ
-      const response = await axios.post(`${Domain}/shorten`, { longUrl: url });
+      // ใน dev หาก Domain เป็น host ตรง ๆ ให้เรียกผ่าน "/api/shorten"
+      // ใน prod สามารถตั้ง VITE_API_BASE_URL เป็น "https://your.host/api" ได้เช่นกัน
+      const response = await axios.post(`${Domain}/api/shorten`, { longUrl: url });
       setShortUrl(response.data.shortUrl);
       setLongUrl(url);
       setUrl("");
@@ -31,9 +32,8 @@ export default function Links() {
 
   const handleShortClick = () => {
     try {
-      const slug = shortUrl.split("/").pop();
-      // เปิดที่รากโดเมน ไม่ใช่ภายใต้ /api
-      window.open(`/RT/${slug}`, "_blank");
+      // เปิดลิงก์สั้นเต็มโดเมนเพื่อหลีกเลี่ยงปัญหา origin (เช่น vite dev server)
+      window.open(shortUrl, "_blank");
     } catch (error) {
       console.error("Error calling redirect API:", error);
     }
