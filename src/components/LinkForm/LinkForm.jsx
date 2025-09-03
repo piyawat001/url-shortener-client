@@ -30,13 +30,16 @@ export default function Links() {
     }
   };
 
-  const handleShortClick = async () => {
+  const handleCopyClick = async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
     try {
       // Copy to clipboard
       await navigator.clipboard.writeText(shortUrl);
       
       // Show temporary feedback
-      const element = document.querySelector('.short-url');
+      const element = e.target.previousSibling || document.querySelector('.short-url');
       const originalText = element.textContent;
       element.textContent = 'Copied!';
       element.style.color = '#28a745';
@@ -48,9 +51,13 @@ export default function Links() {
       
     } catch (error) {
       console.error("Error copying to clipboard:", error);
-      // Fallback: open in new tab
-      window.open(shortUrl, "_blank");
+      alert("Failed to copy to clipboard");
     }
+  };
+  
+  const handleUrlClick = () => {
+    // Open in new tab when clicking the URL text
+    window.open(shortUrl, "_blank");
   };
 
   return (
@@ -81,12 +88,12 @@ export default function Links() {
 
             <div className="url-row">
               <strong>Short URL:</strong>
-              <span className="short-url" onClick={handleShortClick} title="Click to copy">
+              <span className="short-url" onClick={handleUrlClick} title="Click to open in new tab">
                 {shortUrl}
               </span>
               <button 
                 type="button" 
-                onClick={handleShortClick}
+                onClick={handleCopyClick}
                 className="copy-btn"
                 title="Copy to clipboard"
               >
