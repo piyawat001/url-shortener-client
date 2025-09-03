@@ -114,3 +114,31 @@
 .url-row .short-url:hover {
   text-decoration: underline;
 }
+
+/* Copy button */
+.copy-btn {
+  padding: 0.5rem 0.8rem;
+  background: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s, border-color 0.2s;
+  margin-left: auto;
+}
+
+.copy-btn:hover {
+  background: #e9ecef;
+  border-color: #ccc;
+}
+
+.copy-btn:active {
+  background: #dee2e6;
+}
+
+/* Short URL styling */
+.short-url {
+  flex: 1;
+  user-select: all;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+}

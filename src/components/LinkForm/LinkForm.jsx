@@ -30,12 +30,26 @@ export default function Links() {
     }
   };
 
-  const handleShortClick = () => {
+  const handleShortClick = async () => {
     try {
-      // เปิดลิงก์สั้นเต็มโดเมนเพื่อหลีกเลี่ยงปัญหา origin (เช่น vite dev server)
-      window.open(shortUrl, "_blank");
+      // Copy to clipboard
+      await navigator.clipboard.writeText(shortUrl);
+      
+      // Show temporary feedback
+      const element = document.querySelector('.short-url');
+      const originalText = element.textContent;
+      element.textContent = 'Copied!';
+      element.style.color = '#28a745';
+      
+      setTimeout(() => {
+        element.textContent = originalText;
+        element.style.color = '';
+      }, 1500);
+      
     } catch (error) {
-      console.error("Error calling redirect API:", error);
+      console.error("Error copying to clipboard:", error);
+      // Fallback: open in new tab
+      window.open(shortUrl, "_blank");
     }
   };
 
@@ -67,9 +81,17 @@ export default function Links() {
 
             <div className="url-row">
               <strong>Short URL:</strong>
-              <span className="short-url" onClick={handleShortClick}>
-                {shortUrl.replace(/^https?:\/\/[^/]+\/?/, "")}
+              <span className="short-url" onClick={handleShortClick} title="Click to copy">
+                {shortUrl}
               </span>
+              <button 
+                type="button" 
+                onClick={handleShortClick}
+                className="copy-btn"
+                title="Copy to clipboard"
+              >
+                📋
+              </button>
             </div>
 
             <div style={{ marginTop: "16px" }}>
