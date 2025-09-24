@@ -89,7 +89,7 @@ export default function Links() {
                   <p><strong>ตัวอย่าง:</strong></p>
                   <p className="example-text">
                     จาก: <span className="long-example">https://website-ที่มี-url-ยาวมาก.com/page/subpage?param=value</span><br/>
-                    เป็น: <span className="short-example">yourdomain.com/abc123</span>
+                    เป็น: <span className="short-example">https://rty.ink/abc123</span>
                   </p>
                 </div>
               </div>
