@@ -1,0 +1,14 @@
+# dependencies & build outputs
+node_modules/
+dist/
+.vite/
+*.log
+
+# env & local settings
+.env
+.env.*
+!.env.example
+
+# editor/OS
+.DS_Store
+*.swp

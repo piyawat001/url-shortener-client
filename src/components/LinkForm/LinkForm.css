@@ -1,0 +1,276 @@
+.LinkForm {
+  text-align: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1E63C1 0%, #6AB2F7 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.LinkForm-header {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  width: 90%;
+}
+
+.LinkForm-header h2 {
+  color: #333;
+  margin-bottom: 1rem;
+  font-size: 2.5rem;
+}
+
+.LinkForm-header p {
+  color: #666;
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+
+/* Form input */
+.url-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.url-form input {
+  padding: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.url-form input:focus {
+  border-color: #2179D9;
+}
+
+/* Buttons */
+.submit-btn, .test-btn {
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #1E63C1 0%, #6AB2F7 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.submit-btn:hover, .test-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(33, 121, 217, 0.3);
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Result box */
+.result {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* เพิ่มช่องว่างระหว่าง Long URL / Short URL / QRCode */
+}
+/* URL rows */
+
+.url-row {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* ระยะห่างระหว่าง label กับ value */
+}
+
+.url-row span, .url-row a {
+  word-break: break-all;
+}
+
+.url-row strong {
+  min-width: 80px; /* กำหนดให้ label มีความกว้างเท่ากัน */
+  text-align: left;
+}
+
+.url-row a,
+.url-row .short-url {
+  color: #2179D9;
+  font-weight: 600;
+  word-break: break-all;
+  cursor: pointer;
+  text-decoration: none;
+  transition: text-decoration 0.2s;
+}
+
+.url-row a:hover,
+.url-row .short-url:hover {
+  text-decoration: underline;
+}
+
+/* Copy button */
+.copy-btn {
+  padding: 0.5rem 0.8rem;
+  background: #2179D9;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s, transform 0.2s;
+  margin-left: 10px;
+  flex-shrink: 0;
+}
+
+.copy-btn:hover {
+  background: #1a5db8;
+  transform: translateY(-1px);
+}
+
+.copy-btn:active {
+  background: #144a94;
+  transform: translateY(0px);
+}
+
+/* Short URL styling */
+.short-url {
+  flex: 1;
+  user-select: all;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+}
+
+/* Tips Section Styling */
+.tips-section {
+  background: linear-gradient(135deg, #e3f2fd 0%, #f1f8ff 100%);
+  border-radius: 15px;
+  margin-bottom: 2rem;
+  text-align: left;
+  box-shadow: 0 4px 12px rgba(33, 121, 217, 0.1);
+  overflow: hidden;
+}
+
+.tips-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s ease;
+}
+
+.tips-header:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.tips-header h3 {
+  color: #1E63C1;
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.arrow {
+  color: #1E63C1;
+  font-size: 0.8rem;
+  transition: transform 0.3s ease;
+  font-weight: bold;
+}
+
+.arrow.open {
+  transform: rotate(180deg);
+}
+
+.tips-content {
+  padding: 0 1.5rem 1.5rem 1.5rem;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tips-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+}
+
+.tips-list li {
+  padding: 0.5rem 0;
+  color: #444;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.example-box {
+  background: rgba(255, 255, 255, 0.7);
+  padding: 1rem;
+  border-radius: 10px;
+  border-left: 4px solid #1E63C1;
+}
+
+.example-box p {
+  margin: 0.5rem 0;
+  color: #555;
+}
+
+.example-text {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.long-example {
+  color: #666;
+  background: #f5f5f5;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.8rem;
+}
+
+.short-example {
+  color: #1E63C1;
+  background: #e3f2fd;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .tips-header {
+    padding: 0.8rem 1rem;
+  }
+  
+  .tips-header h3 {
+    font-size: 1.1rem;
+  }
+  
+  .tips-content {
+    padding: 0 1rem 1rem 1rem;
+  }
+  
+  .tips-list li {
+    font-size: 0.9rem;
+  }
+  
+  .example-text {
+    font-size: 0.8rem;
+  }
+}
